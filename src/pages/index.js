@@ -1,57 +1,95 @@
 import React, { useState } from "react"
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from "gatsby"
 import Layout from '../components/Layout'
 import Projects from '../components/Projects'
+import Arrow from "../assets/Arrow"
+import Resume from "../components/Resume"
+import Contact from "../components/Contact"
 
-export default function Indexpage() {
-  
-  const [toggleProjects, setToggleProjects] = useState(true)
-  
-  const handleProjects = () => setToggleProjects(!toggleProjects)
-  
+
+
+export default function Indexpage() {  
+  const [toggleNav, setToggleNav] = useState(null)
+  const handleNav = (event) => setToggleNav(event.target.id)
+
+  const navStyles = "text-4xl md:text-6xl underline font-bold flex-1 cursor-pointer text-[#F64D00]"
+  const navContainerStyles = "relative min-h-40"
+  const navVariants = {
+    initial: {
+      y:50,
+      opacity: 0,
+    },
+    animate: {
+      y:0,
+      opacity: 1,
+      transition: {
+        ease: [0.6, 0.01, -0.05, 0.95],
+        duration: 1
+      }
+    },
+    exit: {
+      opacity: 0,
+      y:-50,
+      transition: {duration: 0.3,}
+    }
+  }
+
+
   return (
 <>
-  <Layout isOpen={toggleProjects}>
-    <div className="mt-28">
-      <div>
-        <p className=" text-right text-xl">
-          Hi there.<br/>
-          ️I am Salih, and this website is my<br/>
-          introduction to Gatsby JS.<br/>
-        </p>
-        <div className="mt-14 flex gap-4 justify-end font-bold text-2xl text-right text-indigo-400
-        md:mt-10">
-          <a href="#">linkedin↗︎</a>
-          <a href="#">behance↗︎</a>
-          <a href="#">github↗︎</a>
-        </div>
+  <Layout isOpen={toggleNav} handleNav={handleNav}>
+  <AnimatePresence>
+  {/* <div>
+    <div className='h-10 w-full bg-[#77967A]'></div>
+    <div className='h-8 w-full bg-[#5E4658]'></div>
+    <div className='h-6 w-full bg-[#FF8D04]'></div>
+    <div className='h-4 w-full bg-[#285551]'></div>
+    <div className='h-2 w-full bg-[#7FB6B7]'></div>
+  </div> */}
+    {!toggleNav && 
+    (<div className="flex flex-col gap-12 text-xl mt-auto
+          md:flex-row md:justify-between mb-20 md:pt-10">
+      
+      <div className={navContainerStyles}>
+        <motion.h2 variants={navVariants} initial="initial" animate="animate" exit="exit"
+              className={navStyles}
+              id="resume"
+              onClick={handleNav}
+              >RESUME
+        </motion.h2>
+        {/* <Arrow color="#ffffff" style={`absolute -bottom-10 right-0 h-60 opacity-30 pointer-events-none rotate-90`}/> */}
       </div>
-    </div>
-    <div className="my-28 flex flex-col gap-20 text-xl
-          md:flex-row md:justify-between md:mt-auto md:mb-16 md:pt-10">
-      <div>
-        <h2 className="text-4xl underline font-bold flex-1 cursor-pointer text-rose-500"
-        onClick={handleProjects}
-        >Projects ↑</h2>
-        <p className="mt-6">Click here to<br/>take a look at my work.</p>
+      
+      <div className={navContainerStyles}>
+        <motion.h2 variants={navVariants} initial="initial" animate="animate" exit="exit"
+              className={navStyles} 
+              id="projects"
+              onClick={handleNav}
+              >PROJECTS
+        </motion.h2>
+        {/* <Arrow color="#ffffff" style={`absolute -bottom-10 h-60 opacity-30 pointer-events-none left-8`}/> */}
       </div>
-      <div>
-        <h2 className="text-4xl underline font-bold flex-1"
-        >Resume</h2>
-        <p className="mt-6"><u>Download my resume. ↓</u><br/><br/>
-        Up-to-date as of May 2022.</p>
-      </div>      <div>
-        <h2 className="text-4xl underline font-bold flex-1"
-        >Contact</h2>
-        <p className="mt-6">Send me an e-mail at:<br/><br/>
-        <u>salihayazdir@gmail.com</u></p>
+      
+      <div className={navContainerStyles}>
+        <motion.h2 variants={navVariants} initial="initial" animate="animate" exit="exit"
+              className={navStyles}
+              id="contact"
+              onClick={handleNav}
+              >CONTACT
+        </motion.h2>
+        {/* <Arrow color="#ffffff" style={`absolute -bottom-10 h-60 opacity-30 pointer-events-none -rotate-90`}/> */}
       </div>
-    </div> 
-    
-  </Layout>
- 
-  <Projects handleProjects={handleProjects} isOpen={toggleProjects}/>
 
+    </div>)}
+  </AnimatePresence>
+  </Layout>
+
+  <AnimatePresence>
+    {(toggleNav === "resume") && (<Resume handleNav={handleNav} toggleNav={toggleNav}/>)}
+    {(toggleNav === "projects") && (<Projects handleNav={handleNav} toggleNav={toggleNav}/>)}
+    {(toggleNav === "contact") && (<Contact handleNav={handleNav} toggleNav={toggleNav}/>)}
+  </AnimatePresence>
 </>
   )
 }

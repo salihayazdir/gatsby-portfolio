@@ -1,20 +1,62 @@
 import React from 'react'
+import { motion } from 'framer-motion'
+
+const logoVariants = {
+  animate: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+}
+
+const letterVariants = {
+  initial: {
+    pathLength: 0,
+    y: -100,
+    opacity: 0,
+  },
+  animate: {
+    pathLength: 1,
+    y: 0,
+    opacity: 1,
+    transition: {
+      ease: [0.6, 0.01, -0.05, 0.95],
+      duration: 0.5
+    }
+  }
+}
 
 export default function Header(props) {
   return (
-    <div className='flex align-middle mt-10'>
-        
-        <h1 className={`text-7xl leading-[0.6em] tracking-tight
-        absolute md:top-40 md:text-8xl md:leading-[0.6em]
-        ${props.isOpen &&
-            'text-4xl md:text-5xl static md:top-8'} 
-        ease-in-out duration-700 `}
-            >salih<br/>ayazdır
-        </h1>
+    <div className='flex align-middle mt-6'>
 
-        <button className='border border-[#F2FFE6] px-4 h-10 text-sm ml-auto'
-            >Türkçe  🇹🇷
-        </button>
+      <motion.svg variants={logoVariants} initial='initial' animate='animate' onClick={props.handleNav} data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 932.9 107.4"
+          className={`absolute top-40 left-6 right-6 w-[calc(100vw-3rem)]
+            md:left-[5vw] md:w-[90vw] ease-in-out duration-500
+            ${props.isOpen &&'my-auto md:w-64 w-48 md:top-8 top-[2.1rem]'} `}
+          fill="#888888">
+        <g>
+          <motion.path variants={letterVariants} d="M24.1,79.8a15.8,15.8,0,0,0,5,5.8,20.7,20.7,0,0,0,7.2,3.3A31.5,31.5,0,0,0,45,90a36.6,36.6,0,0,0,6.4-.5,23.3,23.3,0,0,0,6.5-1.9,15.4,15.4,0,0,0,5.1-4,10.2,10.2,0,0,0,2-6.4,8.7,8.7,0,0,0-2.7-6.7,19.4,19.4,0,0,0-7-4.3,63.1,63.1,0,0,0-9.8-3.1c-3.6-.8-7.3-1.8-11-2.8a97.7,97.7,0,0,1-11.2-3.6,38.6,38.6,0,0,1-9.8-5.4,25.3,25.3,0,0,1-7-8.2,24.7,24.7,0,0,1-2.7-12A27.7,27.7,0,0,1,7.2,17.3a30.6,30.6,0,0,1,8.9-9.7A36.5,36.5,0,0,1,28.4,1.9,50.5,50.5,0,0,1,42.2,0,65.2,65.2,0,0,1,57.7,1.8,39.3,39.3,0,0,1,70.9,7.6,30.1,30.1,0,0,1,80,17.9a32.2,32.2,0,0,1,3.4,15.2H61.5a18,18,0,0,0-1.9-7.6,12.8,12.8,0,0,0-4.4-4.8,17.6,17.6,0,0,0-6.3-2.4,36.4,36.4,0,0,0-7.7-.8,24.8,24.8,0,0,0-5.4.6,15.9,15.9,0,0,0-5,2,14.1,14.1,0,0,0-3.7,3.6,10.4,10.4,0,0,0-1.4,5.5,9.1,9.1,0,0,0,1.2,4.9,9.4,9.4,0,0,0,4.5,3.4,57.5,57.5,0,0,0,9.3,3.2l15.6,4c2,.4,4.6,1.1,8,2.1a39.2,39.2,0,0,1,10.2,4.8,32.1,32.1,0,0,1,8.7,8.9q3.6,5.6,3.6,14.1a31.7,31.7,0,0,1-2.7,13.1A28.3,28.3,0,0,1,76,98.2,39.3,39.3,0,0,1,62.6,105a64.4,64.4,0,0,1-18.5,2.4,65.5,65.5,0,0,1-16.5-2.1,38.4,38.4,0,0,1-14-6.5A32.7,32.7,0,0,1,3.8,87.4C1.4,82.8.3,77.4.4,71H22.3A19.4,19.4,0,0,0,24.1,79.8Z"/>
+          <motion.path variants={letterVariants} d="M143,2.4l38.4,102.7H157.9l-7.7-22.8H111.8l-8.1,22.8H81L119.8,2.4Zm1.3,63-13-37.6H131L117.7,65.4Z"/>
+          <motion.path variants={letterVariants} d="M205.8,2.4V86.1h50v19H183.2V2.4Z"/>
+          <motion.path variants={letterVariants} d="M282.6,32.4v72.7H260.1V32.4Z"/>
+          <motion.path variants={letterVariants} d="M282.6,2.4V25H260.1V2.4Z"/>
+          <motion.path variants={letterVariants} d="M308.9,2.4V41.8h41.5V2.4H373V105.1H350.4V60.8H308.9v44.3H286.3V2.4Z"/>
+        </g>
+        <g className='opacity-100'>
+          <motion.path variants={letterVariants} d="M445.6,2.4,484,105.1H460.6l-7.8-22.8H414.4l-8,22.8H383.6L422.5,2.4Zm1.3,63L434,27.8h-.3L420.3,65.4Z"/>
+          <motion.path variants={letterVariants} d="M455,2.4h25.3L504.4,43,528.2,2.4h25.2L515.3,65.7v39.4H492.7v-40Z"/>
+          <motion.path variants={letterVariants} d="M585.3,2.4l38.4,102.7H600.2l-7.7-22.8H554.1L546,105.1H523.3L562.1,2.4Zm1.3,63-13-37.6h-.2L560,65.4Z"/>
+          <motion.path variants={letterVariants} d="M682.6,21.4H631.9V2.4h80.8V20.3L657.6,86.1h56.5v19H627.5V87.3Z"/>
+          <motion.path variants={letterVariants} d="M763.2,2.4a53.3,53.3,0,0,1,18.5,3.2,40.5,40.5,0,0,1,14.8,9.5,44.1,44.1,0,0,1,9.8,15.8,65.2,65.2,0,0,1,3.5,22.3,68.2,68.2,0,0,1-2.9,20.7,45.3,45.3,0,0,1-8.7,16.4,40.8,40.8,0,0,1-14.5,10.9c-5.8,2.6-12.6,3.9-20.5,3.9H718.9V2.4Zm-1.6,83.7a30,30,0,0,0,9.5-1.5,20.7,20.7,0,0,0,8.2-5.3,26.5,26.5,0,0,0,5.8-9.6,42.7,42.7,0,0,0,2.1-14.3,61,61,0,0,0-1.5-14.1,28.4,28.4,0,0,0-4.9-10.7,22.9,22.9,0,0,0-9.2-6.8,35.5,35.5,0,0,0-14-2.4H741.5V86.1Z"/>
+          <motion.path variants={letterVariants} d="M837.4,2.4V105.1H814.9V2.4Z"/>
+          <motion.path variants={letterVariants} d="M899.8,2.4a32.6,32.6,0,0,1,12.4,2.3,28.2,28.2,0,0,1,9.5,6.1,26.1,26.1,0,0,1,6.1,9,28.4,28.4,0,0,1,2.1,11A30.7,30.7,0,0,1,926,46.5c-2.5,4.4-6.6,7.7-12.4,10v.3a17.3,17.3,0,0,1,6.9,3.5,22.2,22.2,0,0,1,4.5,5.6,27.9,27.9,0,0,1,2.5,7.2,64.9,64.9,0,0,1,1.1,7.7c.1,1.7.1,3.6.2,5.8s.3,4.4.5,6.7a64.5,64.5,0,0,0,1.2,6.6,13.9,13.9,0,0,0,2.4,5.2H910.3A37.8,37.8,0,0,1,908,93.5c-.3-4.5-.7-8.8-1.3-13s-2.4-9.3-4.9-11.8S895.2,65,889.6,65H867v40.1H844.4V2.4Zm-8.1,46.5c5.2,0,9.1-1.2,11.7-3.5s3.9-6,3.9-11.2-1.3-8.6-3.9-10.8S896.9,20,891.7,20H867V48.9Z"/>
+        </g>
+      </motion.svg>
+
+      {/* <button className='border-2 border-white px-4 h-10 text-sm ml-auto'
+          >Türkçe
+      </button> */}
     </div>
   )
 }
