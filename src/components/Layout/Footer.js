@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Footer(props) {
+export default function Footer() {
   return (
   <div className="flex justify-between justify-self-end w-full border-t border-black opacity-60 mt-10">
     <p className='text-sm my-4'>Salih Ayazdır<br/>2022</p>

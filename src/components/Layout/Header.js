@@ -1,39 +1,42 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import NavContext from '../../context/NavContext'
 import { motion } from 'framer-motion'
 
-const logoVariants = {
-  animate: {
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-}
+export default function Header() {
+  const {nav, handleNav} = useContext(NavContext)
 
-const letterVariants = {
-  initial: {
-    pathLength: 0,
-    y: -100,
-    opacity: 0,
-  },
-  animate: {
-    pathLength: 1,
-    y: 0,
-    opacity: 1,
-    transition: {
-      ease: [0.6, 0.01, -0.05, 0.95],
-      duration: 0.5
+  const logoVariants = {
+    animate: {
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  }
+
+  const letterVariants = {
+    initial: {
+      pathLength: 0,
+      y: -100,
+      opacity: 0,
+    },
+    animate: {
+      pathLength: 1,
+      y: 0,
+      opacity: 1,
+      transition: {
+        ease: [0.6, 0.01, -0.05, 0.95],
+        duration: 0.5
+      }
     }
   }
-}
 
-export default function Header(props) {
   return (
     <div className='flex align-middle mt-6'>
 
-      <motion.svg variants={logoVariants} initial='initial' animate='animate' onClick={props.handleNav} data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 932.9 107.4"
+      <motion.svg variants={logoVariants} initial='initial' animate='animate' onClick={handleNav} data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 932.9 107.4"
           className={`absolute top-40 left-6 right-6 w-[calc(100vw-3rem)]
             md:left-[5vw] md:w-[90vw] ease-in-out duration-500
-            ${props.isOpen &&'my-auto md:w-64 w-48 md:top-8 top-[2.1rem]'} `}
+            ${nav && 'my-auto md:w-64 w-48 md:top-8 top-[2.1rem]'} `}
           fill="#888888">
         <g>
           <motion.path variants={letterVariants} d="M24.1,79.8a15.8,15.8,0,0,0,5,5.8,20.7,20.7,0,0,0,7.2,3.3A31.5,31.5,0,0,0,45,90a36.6,36.6,0,0,0,6.4-.5,23.3,23.3,0,0,0,6.5-1.9,15.4,15.4,0,0,0,5.1-4,10.2,10.2,0,0,0,2-6.4,8.7,8.7,0,0,0-2.7-6.7,19.4,19.4,0,0,0-7-4.3,63.1,63.1,0,0,0-9.8-3.1c-3.6-.8-7.3-1.8-11-2.8a97.7,97.7,0,0,1-11.2-3.6,38.6,38.6,0,0,1-9.8-5.4,25.3,25.3,0,0,1-7-8.2,24.7,24.7,0,0,1-2.7-12A27.7,27.7,0,0,1,7.2,17.3a30.6,30.6,0,0,1,8.9-9.7A36.5,36.5,0,0,1,28.4,1.9,50.5,50.5,0,0,1,42.2,0,65.2,65.2,0,0,1,57.7,1.8,39.3,39.3,0,0,1,70.9,7.6,30.1,30.1,0,0,1,80,17.9a32.2,32.2,0,0,1,3.4,15.2H61.5a18,18,0,0,0-1.9-7.6,12.8,12.8,0,0,0-4.4-4.8,17.6,17.6,0,0,0-6.3-2.4,36.4,36.4,0,0,0-7.7-.8,24.8,24.8,0,0,0-5.4.6,15.9,15.9,0,0,0-5,2,14.1,14.1,0,0,0-3.7,3.6,10.4,10.4,0,0,0-1.4,5.5,9.1,9.1,0,0,0,1.2,4.9,9.4,9.4,0,0,0,4.5,3.4,57.5,57.5,0,0,0,9.3,3.2l15.6,4c2,.4,4.6,1.1,8,2.1a39.2,39.2,0,0,1,10.2,4.8,32.1,32.1,0,0,1,8.7,8.9q3.6,5.6,3.6,14.1a31.7,31.7,0,0,1-2.7,13.1A28.3,28.3,0,0,1,76,98.2,39.3,39.3,0,0,1,62.6,105a64.4,64.4,0,0,1-18.5,2.4,65.5,65.5,0,0,1-16.5-2.1,38.4,38.4,0,0,1-14-6.5A32.7,32.7,0,0,1,3.8,87.4C1.4,82.8.3,77.4.4,71H22.3A19.4,19.4,0,0,0,24.1,79.8Z"/>
