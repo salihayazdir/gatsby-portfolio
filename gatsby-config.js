@@ -40,7 +40,6 @@ module.exports = {
         path: `${__dirname}/src/assets/`,
       },
     },
-
     // {
     //   resolve: `gatsby-source-contentful`,
     //   options: {
@@ -48,14 +47,6 @@ module.exports = {
     //     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
     //   },
     // },
-    {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        rule: {
-          include: /assets/
-        }
-      }
-    },
     {
       resolve: `gatsby-source-contentful`,
       options: {
