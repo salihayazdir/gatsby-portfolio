@@ -12,8 +12,8 @@ export default function Resume() {
           >↓ Download PDF
         </a>
         <div>
-          <StaticImage src="../assets/cv1.jpg" alt="cv1"/>
-          <StaticImage src="../assets/cv2.jpg" alt="cv2"/>
+          <StaticImage src="../../assets/cv1.jpg" alt="cv1"/>
+          <StaticImage src="../../assets/cv2.jpg" alt="cv2"/>
         </div>
     </Window>
     )
