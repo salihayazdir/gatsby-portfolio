@@ -18,5 +18,3 @@ export default function Resume() {
     </Window>
     )
 }
-
-// ${isOpen ? 'translate-x-0' : 'translate-x-[-120%]'} ease-in-out duration-700 
