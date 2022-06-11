@@ -54,8 +54,8 @@ export default function Contact() {
       </div>
 
       <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field"
-            className='flex-[3]' onSubmit={handleSubmit} netlify>
-        <input type="hidden" name="form-name" value="contact" />
+            className='flex-[3]' onSubmit={handleSubmit}>
+        <input type="hidden" name="contact" value="contact" />
         <label htmlFor='name'>Name</label>
         <input
           id='name' type='text' name='name' onChange={handleChange} value={formState.name}
