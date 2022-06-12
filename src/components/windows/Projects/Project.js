@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { motion, AnimateSharedLayout } from 'framer-motion'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { richTextOptions } from './richTextOptions'
-
+import { TbArrowUpRight } from 'react-icons/tb';
 
 export default function Project(
     {viewProject, slug, i, activeProject, name, desc, liveurl, github, behance, thumbnail, content }) {
@@ -31,19 +31,19 @@ export default function Project(
                 (<a target="_blank" rel="noopener noreferrer" href={liveurl}
                 className='solidshadow tracking-wider bg-white font-bold py-2 px-4 border-2 border-black flex-shrink-0
                   hover:bg-black hover:text-white'>
-                LIVE ↗︎
+                LIVE <TbArrowUpRight size='24' className='inline pb-[3px]'/>
               </a>)}
               {github && 
                 (<a target="_blank" rel="noopener noreferrer" href={github}
                 className='solidshadow tracking-wider bg-white font-bold py-2 px-4 border-2 border-black flex-shrink-0
                   hover:bg-black hover:text-white'>
-                GITHUB ↗︎
+                GITHUB <TbArrowUpRight size='24' className='inline pb-[3px]'/>
               </a>)}
               {behance && 
                 (<a target="_blank" rel="noopener noreferrer" href={behance}
                 className='solidshadow tracking-wider bg-white font-bold py-2 px-4 border-2 border-black flex-shrink-0
                   hover:bg-black hover:text-white'>
-                BEHANCE ↗︎
+                BEHANCE <TbArrowUpRight size='24' className='inline pb-[3px]'/>
               </a>)}
             </motion.div>
             {thumbnail && <GatsbyImage className='mt-6 border-2 border-[#DDDDD2]' image={thumbnail}/>}

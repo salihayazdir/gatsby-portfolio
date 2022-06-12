@@ -3,6 +3,10 @@
  *
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
+ 
+require("dotenv").config({
+  path: `.env`,
+ })
 
 module.exports = {
   /* Your site config here */
@@ -13,6 +17,8 @@ module.exports = {
   
   plugins: [
     'gatsby-plugin-postcss',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -31,8 +37,6 @@ module.exports = {
         }
       }
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-image',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -40,21 +44,13 @@ module.exports = {
         path: `${__dirname}/src/assets/`,
       },
     },
-    // {
-    //   resolve: `gatsby-source-contentful`,
-    //   options: {
-    //     spaceId: process.env.CONTENTFUL_SPACE_ID,
-    //     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-    //   },
-    // },
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: 'qddq7dst2498',
-        accessToken: 'dV52FtgUEin0YGHNXwXaUtXViMNZp_LvVicQ_sN2p6o',
+        spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    
-    
+
   ],
 }
