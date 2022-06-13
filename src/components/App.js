@@ -3,7 +3,7 @@ import NavContext from "../context/NavContext";
 import { AnimatePresence } from 'framer-motion';
 import Layout from '../components/Layout/Layout'
 import Projects from './windows/Projects/Projects'
-import Contact from "./windows/Contact";
+import Contact from "./windows/Contact/Contact";
 import Resume from "./windows/Resume"
 import NavItem from "./NavItem";
 
