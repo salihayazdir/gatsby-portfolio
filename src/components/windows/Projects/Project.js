@@ -9,6 +9,8 @@ export default function Project(
     {viewProject, slug, i, activeProject, name, desc, liveurl, github, behance, thumbnail, content }) {
     const isViewed = (slug) => (activeProject === slug)
 
+    const linkHandler = (e) => e.stopPropagation()
+
     return (
         <AnimateSharedLayout>
         {
@@ -21,26 +23,26 @@ export default function Project(
             className={`outline outline-2 outline-black bg-white 
             ${activeProject ? 
               'md:grid md:col-span-3 md:grid-cols-3' : 
-              'hover:bg-slate-100 cursor-pointer'}`}>
+              'hover:bg-slate-100 cursor-pointer group'}`}>
 
           <motion.div layout className={`p-6`}>
-            <motion.h2 layout className={`text-4xl font-bold`}>{name}</motion.h2>
+            <motion.h2 layout className={`text-4xl font-bold group-hover:underline`}>{name}</motion.h2>
             <motion.p layout className='text-slate-500 mt-2'>{desc}</motion.p>
             <motion.div layout className='flex flex-wrap gap-6 mt-8 mb-4'>
               {liveurl && 
-                (<a target="_blank" rel="noopener noreferrer" href={liveurl}
+                (<a onClick={linkHandler} target="_blank" rel="noopener noreferrer" href={liveurl}
                 className='solidshadow tracking-wider bg-white font-bold py-2 px-4 border-2 border-black flex-shrink-0
                   hover:bg-black hover:text-white'>
                 LIVE <TbArrowUpRight size='24' className='inline pb-[3px]'/>
               </a>)}
               {github && 
-                (<a target="_blank" rel="noopener noreferrer" href={github}
+                (<a onClick={linkHandler} target="_blank" rel="noopener noreferrer" href={github}
                 className='solidshadow tracking-wider bg-white font-bold py-2 px-4 border-2 border-black flex-shrink-0
                   hover:bg-black hover:text-white'>
                 GITHUB <TbArrowUpRight size='24' className='inline pb-[3px]'/>
               </a>)}
               {behance && 
-                (<a target="_blank" rel="noopener noreferrer" href={behance}
+                (<a onClick={linkHandler} target="_blank" rel="noopener noreferrer" href={behance}
                 className='solidshadow tracking-wider bg-white font-bold py-2 px-4 border-2 border-black flex-shrink-0
                   hover:bg-black hover:text-white'>
                 BEHANCE <TbArrowUpRight size='24' className='inline pb-[3px]'/>

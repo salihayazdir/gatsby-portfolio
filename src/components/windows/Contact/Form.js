@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion';
 import { send } from '@emailjs/browser'
-import { TbArrowDown } from 'react-icons/tb';
+import { TbArrowDown, TbLoader } from 'react-icons/tb';
 
 export default function Form() {
 
     const [formData, setFormData] = useState({ username: '', email: '',message: '', })
-    const [formState, setFormState] = useState({isOpen: false, isSent: false, isFailed: false, isLoading: false})
+    const [formState, setFormState] = useState({isOpen: false, isSent: false, isFailed: false, isLoading: true})
 
     const handleChange = (e) => {
         setFormData(
@@ -40,15 +40,15 @@ export default function Form() {
         
     const fieldStyles = 'focus:bg-slate-100 focus:outline-0 px-6 py-4 mb-[-px] border-b-2 border-black'
     const containerVariants = {
-      hidden: { y: -50, opacity: 0, },
+      hidden: { y: -250, opacity: 1, },
       visible: { y: 0, opacity: 1, transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 0.5 } },
       exit: { opacity: 0, y: 50, transition: { ease: [0.6, 0.01, -0.05, 0.95], duration: 0.3 } }
     }
-
+    
     return (
         <>
             <div onClick={() => setFormState({...formState, isOpen: true})}
-            className={`flex px-6 py-4 text-2xl font-bold bg-slate-300 outline outline-2 outline-black ${!formState.isOpen && 'cursor-pointer hover:bg-slate-200'}`}>
+            className={`z-20 flex px-6 py-4 text-2xl font-bold bg-slate-300 outline outline-2 outline-black ${!formState.isOpen && 'cursor-pointer hover:bg-slate-200'}`}>
                 Leave a Message <TbArrowDown size='30' className='ml-2'/>
             </div>
             <AnimatePresence>
@@ -59,7 +59,7 @@ export default function Form() {
                 animate="visible"
                 exit="exit"
                 name="contact" onSubmit={handleSubmit}
-                className='flex flex-col text-lg outline outline-2 outline-black bg-white'>
+                className=' z-10 flex flex-col text-lg  bg-white'>
                     <input
                         id='username' type='text' name='username' placeholder='Your Name' required
                         onChange={handleChange} value={formData.username}
@@ -83,8 +83,19 @@ export default function Form() {
             )}
             </AnimatePresence>
 
-            <AnimatePresence>
-            {formState.isLoading && <div>loading</div>}
+            {formState.isLoading && (
+                <motion.div
+                className='bg-yellow rounded-full h-4 w-4 mt-12 ml-12'
+                animate={{ x: [-20, 20], y: [0, -30], 
+                    transition: { 
+                        x: { yoyo: Infinity, duration: 0.8, ease: 'easeInOut' },
+                        y: { yoyo: Infinity, duration: 0.2, ease: [0.6, 0.01, -0.05, 0.95], } 
+                    }}}
+                    >
+                </motion.div>
+            )}
+
+            <AnimatePresence> 
             {formState.isSent && (
                 <motion.div 
                 variants={containerVariants}
@@ -92,7 +103,7 @@ export default function Form() {
                 animate="visible"
                 exit="exit"
                 className={`px-6 py-4 text-left text-2xl outline outline-2 outline-black bg-green-500 text-white ${formState.isFailed && 'bg-red-500'}`}>
-                    <div>{!formState.isFailed ? ('Message sent. I will get back to you soon.') : ('Failed to send :(( Try again with a real email adress if you were just testing the form.')}</div>
+                    <div>{!formState.isFailed ? ('Message sent. I will get back to you soon.') : ('Failed to send :((')}</div>
                     <button className='underline font-bold mt-2 uppercase'
                     onClick={() => setFormState({...formState, isOpen: true, isSent: false, isFailed: false})}>
                         {!formState.isFailed ? 'Send Another' : 'Try Again'}
