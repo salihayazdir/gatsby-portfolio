@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import { renderRichText } from 'gatsby-source-contentful/rich-text'
-import { motion, AnimateSharedLayout } from 'framer-motion'
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { motion } from 'framer-motion'
+import { getImage } from "gatsby-plugin-image"
 import Window from '../Window'
-import {richTextOptions} from './richTextOptions'
 import Project from './Project'
 
 export default function Projects() {

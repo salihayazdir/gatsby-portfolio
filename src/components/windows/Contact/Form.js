@@ -6,7 +6,7 @@ import { TbArrowDown, TbLoader } from 'react-icons/tb';
 export default function Form() {
 
     const [formData, setFormData] = useState({ username: '', email: '',message: '', })
-    const [formState, setFormState] = useState({isOpen: false, isSent: false, isFailed: false, isLoading: true})
+    const [formState, setFormState] = useState({isOpen: false, isSent: false, isFailed: false, isLoading: false})
 
     const handleChange = (e) => {
         setFormData(
